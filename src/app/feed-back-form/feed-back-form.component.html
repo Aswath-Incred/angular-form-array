@@ -1,0 +1,154 @@
+<div class="container">
+  <h3>Feed back Form</h3>
+  <form
+    [formGroup]="myForm"
+    (ngSubmit)="onFormSubmitted()"
+    class="primary-form"
+  >
+    <div>
+      <label for="firstName">{{ labels[0] }}</label>
+      <div class="input-error-container">
+        <input type="text" formControlName="firstName" id="firstName" />
+        <div
+          *ngIf="
+            myForm.controls['firstName'].touched &&
+            myForm.controls['firstName'].invalid
+          "
+        >
+          <small
+            *ngIf="myForm.controls['firstName'].hasError('required')"
+            class="error-message"
+            >*This field is required.</small
+          >
+          <small
+            *ngIf="myForm.controls['firstName'].hasError('pattern')"
+            class="error-message"
+            >*First letter should be capital. No Spaces.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="lastName">{{ labels[1] }}</label>
+      <div class="input-error-container">
+        <input type="text" formControlName="lastName" id="lastName" />
+        <div
+          *ngIf="
+            myForm.controls['lastName'].touched &&
+            myForm.controls['lastName'].invalid
+          "
+        >
+          <small
+            *ngIf="myForm.controls['lastName'].hasError('required')"
+            class="error-message"
+            >*This field is required.</small
+          >
+          <small
+            *ngIf="myForm.controls['lastName'].hasError('pattern')"
+            class="error-message"
+            >*First letter should be capital. No Spaces.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="mobile">{{ labels[2] }}</label>
+      <div class="input-error-container">
+        <input
+          type="text"
+          formControlName="mobile"
+          id="mobile"
+          maxlength="10"
+        />
+        <div
+          *ngIf="
+            myForm.controls['mobile'].touched &&
+            myForm.controls['mobile'].invalid
+          "
+        >
+          <small
+            *ngIf="myForm.controls['mobile'].hasError('required')"
+            class="error-message"
+            >*This field is required.</small
+          >
+          <small
+            *ngIf="myForm.controls['mobile'].hasError('pattern')"
+            class="error-message"
+            >*Please enter a valid mobile number</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="experience">{{ labels[3] }}</label>
+      <div class="input-error-container">
+        <select formControlName="experience" id="experience">
+          <option value="null" disabled>How was your Experience?</option>
+          <option value="best">Best</option>
+          <option value="good">Good</option>
+          <option value="could be better">Could be better</option>
+        </select>
+      </div>
+    </div>
+
+    <div formArrayName="subArray" class="sub-array-container">
+      <form
+        *ngFor="let item of myForm.get('subArray').controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div *ngFor="let controlName of getFormControlNames(i); let j = index">
+          <label [for]="controlName">{{ labels[j] }}</label>
+          <div class="input-error-container">
+            @if (controlName.startsWith('experience')) {
+            <select [formControlName]="controlName" [id]="controlName">
+              <option value="null" disabled>How was your Experience?</option>
+              <option value="best">Best</option>
+              <option value="good">Good</option>
+              <option value="could be better">Could be better</option>
+            </select>
+            }@else {
+            <input
+              type="text"
+              [formControlName]="controlName"
+              [id]="controlName"
+              [maxlength]="controlName.startsWith('mobile') ? 10 : 50"
+            />
+            <div
+              *ngIf="
+                item.get(controlName).touched && item.get(controlName).invalid
+              "
+            >
+              <small
+                *ngIf="item.get(controlName).hasError('required')"
+                class="error-message"
+                >*This field is required.</small
+              >
+              <small
+                *ngIf="item.get(controlName).hasError('pattern')"
+                class="error-message"
+                >*Please enter a valid input.</small
+              >
+            </div>
+            }
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="button-container">
+      <button type="button" (click)="addMore()" [disabled]="myForm.invalid">
+        + Add More
+      </button>
+      <button type="submit" [disabled]="myForm.invalid">Submit</button>
+      <button
+        type="button"
+        (click)="undoAddMore()"
+        [disabled]="myForm.get('subArray').length === 0"
+      >
+        Undo Add More
+      </button>
+    </div>
+  </form>
+</div>

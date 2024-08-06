@@ -1,0 +1,86 @@
+h3{
+  margin: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff;
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+label {
+  min-width: 100px;
+}
+
+input,
+button {
+  padding: 10px;
+}
+
+select{
+  padding: 10px 10px 10px 0px;
+}
+
+button {
+  background-color: sandybrown;
+  border: 1px solid #333;
+  border-radius: 0.125rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  color: #00000055;
+  border: 1px solid #33333355;
+  background-color: #f4a46055;
+}
+
+input {
+  width: 200px;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid #f00;
+  border-radius: 0.125rem;
+}
+
+.error-message {
+  color: #f00;
+  font-weight: lighter;
+}
+
+.primary-form {
+  border: 1px groove #3d3d3d;
+  padding: 1rem 1.5rem;
+  border-radius: 0.25rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #eee;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sub-array-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-error-container {
+  display: flex;
+  flex-direction: column;
+}

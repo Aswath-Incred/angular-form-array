@@ -1,0 +1,24 @@
+.wrapper{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    flex: 1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+@media screen and (width<630px) {
+    .main{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (width<390px) {
+    .wrapper{
+        font-size: 12px;
+    }
+}

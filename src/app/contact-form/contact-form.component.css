@@ -1,0 +1,90 @@
+:root {
+  --white: #fff;
+  --error: #f00;
+  --bg-grey: #333;
+  --bg-light-grey: #ddd;
+}
+
+.form-container {
+  background-color: #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-top-left-radius: 1rem;
+}
+
+.reactive-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-color: #333;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 3rem 3rem 2rem;
+  color: #fff;
+  div {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    margin-bottom: 1rem;
+    input {
+      flex: 1;
+    }
+  }
+}
+
+input {
+  padding: 0.75rem;
+  border: none;
+  border-top-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.invalid {
+  border: 1px solid #f00;
+}
+
+.error {
+  color: #f00;
+  font-size: 10px;
+}
+
+.ng-invalid.ng-touched{
+  padding: 5rem;
+}
+
+button {
+  padding: 0.75rem 1rem;
+  align-self: center;
+  border: none;
+  background-color: #ddd;
+  font-weight: 600;
+  color: #333;
+  border-top-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  cursor: pointer;
+}
+
+@media screen and (width<630px) {
+  form {
+    border-radius: 0;
+    width: 100%;
+  }
+}
+
+@media screen and (width<390px) {
+  form {
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      input {
+        width: 100%;
+      }
+    }
+  }
+}

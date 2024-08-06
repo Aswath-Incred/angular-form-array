@@ -1,0 +1,68 @@
+<div class="form-container" *ngFor="let item of items.controls; let i = index">
+  <div class="reactive-form" [formGroup]="contactForm">
+    <div>
+      <label for="firstName">First Name</label>
+      <input type="text" formControlName="firstName" id="firstName"/>
+    </div>
+    <div>
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" formControlName="lastName" />
+    </div>
+    <div>
+      <label for="mobile">Mobile Number</label>
+      <!-- <input
+        type="text"
+        formControlName="mobile"
+        id="mobile"
+        [class.invalid]="
+          contactForm.controls['mobile'].invalid &&
+          (contactForm.controls['mobile'].dirty ||
+            contactForm.controls['mobile'].touched)
+        "
+      /> -->
+      <input
+        type="text"
+        formControlName="mobile"
+        id="mobile"
+        [class.invalid]="
+          items.controls[i].get('mobile')?.errors &&
+          (items.controls[i].get('mobile')?.dirty ||
+            items.controls[i].get('mobile')?.touched)
+        "
+      />
+      <!-- <div
+        *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)"
+        class="error"
+      >
+        <div *ngIf="mobile.hasError('required')">Name is required.</div>
+      </div> -->
+    </div>
+    <div>
+      <button (click)="addItem()">+ Add More</button>
+      <button (click)="showItems(i)">Save</button>
+    </div>
+  </div>
+  <div
+    class="reactive-form"
+    [formGroup]="contactForm"
+    *ngFor="let subItem of subItems(i).controls; let j = index"
+  >
+    <div>
+      <label for="password">Enter Password</label
+      ><input type="password" formControlName="password" id="password" />
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm Password</label
+      ><input
+        type="password"
+        formControlName="confirmPassword"
+        id="confirmPassword"
+      />
+    </div>
+    <div>
+      <button (click)="addItem()">+ Add More</button>
+      <button>Save</button>
+      <p *ngIf="contactForm.invalid">Fuck You</p>
+    </div>
+  </div>
+</div>

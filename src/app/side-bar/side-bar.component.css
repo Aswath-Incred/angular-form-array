@@ -1,0 +1,38 @@
+div{
+    padding: 2rem;
+    color: #333;
+    height: 100%;
+}
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+li{
+    margin-left: 1mm;
+    padding: 10px;
+    border-bottom-right-radius: 8px;
+    &:hover{
+        margin-left: 0;
+        background-color: #ddd;
+        border-left: solid 1mm #333;
+        cursor: pointer;
+        &:last-child{
+            color: red;
+            border-left: solid 1mm #f00;
+        }
+    }
+}
+
+@media screen and (width<630px){
+    div{
+        padding: 1rem;
+    }
+    ul{
+        gap: 1rem;
+    }
+    li{
+        text-align: center;
+    }
+}
